@@ -1,0 +1,15 @@
+body {
+  width:100vw;
+}
+img {
+  max-width:100%;
+}
+.movieGrid {
+  display:flex;
+  flex-wrap:wrap;
+  width:100%;
+  .card {
+    width:calc(25% - 20px);
+    padding:10px;
+  }
+}
