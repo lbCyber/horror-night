@@ -50,7 +50,7 @@ class MovieCard extends Component {
           }} onMouseLeave={() => { this.setBackDrop(null) }}>
             <div className="cardTitle">
               <h4>{`${this.props.moviePick.title}`}</h4>
-              <h4>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h4>
+              <h5>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h5>
             </div>
             <div className="imageContainer">
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
@@ -59,7 +59,10 @@ class MovieCard extends Component {
                 <h5>Click for review</h5>
               </figcaption>
             </div>
-            <h5>{`P & K RATING: ___`}</h5>
+            <div className="pkRatings">
+              <h5>{`Paul: __`}</h5>
+              <h5>{`Kyle: __`}</h5>
+            </div>
             <h6>Language: {this.props.language}</h6>
             <h6><a href={`https://www.themoviedb.org/movie/${this.props.moviePick.id}`} target="_blank" rel="noopener noreferrer">TMDB Rating:</a> {this.props.moviePick.vote_average}/10</h6>
           </figure>

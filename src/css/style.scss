@@ -21,13 +21,13 @@ a.cardBox {
   min-width: 150px;
   max-width: 300px;
   margin: 30px;
-  padding: 10px;
+  padding: 10px 10px 15px;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
   background: rgba(66, 66, 66, .66);
-  border-radius: 10px;
+  border-radius: 2px;
   &:hover {
     box-shadow: 0 0 0 1px #fff;
     background: rgba(99, 99, 99, .99);
@@ -35,9 +35,18 @@ a.cardBox {
   }
 }
 
+.pkRatings {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .imageContainer {
   position: relative;
-  overflow: hidden;
+  img {
+    object-fit: cover;
+    height:100%;
+  }
   h5 {
     text-align: center !important;
   }
@@ -152,6 +161,11 @@ img {
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
+  min-height: 55px;
+  & h5 {
+    max-width:4em;
+    text-align:right;
+  }
 }
 
 

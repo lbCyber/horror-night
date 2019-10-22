@@ -196,7 +196,7 @@ a.cardBox {
   min-width: 150px;
   max-width: 300px;
   margin: 30px;
-  padding: 10px;
+  padding: 10px 10px 15px;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -webkit-box-orient: vertical;
@@ -208,16 +208,28 @@ a.cardBox {
   justify-content: flex-end;
   position: relative;
   background: rgba(66, 66, 66, 0.66);
-  border-radius: 10px; }
+  border-radius: 2px; }
   .cardBox:hover {
     -webkit-box-shadow: 0 0 0 1px #fff;
     box-shadow: 0 0 0 1px #fff;
     background: rgba(99, 99, 99, 0.99);
     opacity: 1 !important; }
 
+.pkRatings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%; }
+
 .imageContainer {
-  position: relative;
-  overflow: hidden; }
+  position: relative; }
+  .imageContainer img {
+    -o-object-fit: cover;
+    object-fit: cover;
+    height: 100%; }
   .imageContainer h5 {
     text-align: center !important; }
 
@@ -345,7 +357,11 @@ img {
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: flex-end;
-  width: 100%; }
+  width: 100%;
+  min-height: 55px; }
+  .cardTitle h5 {
+    max-width: 4em;
+    text-align: right; }
 
 /*  Loading Modal Transitions */
 .loadFade-enter {
