@@ -6,6 +6,8 @@ import MovieCard from './local/movieCard'
 import Languages from './local/languages'
 import './css/style.css'
 import { CSSTransition } from 'react-transition-group'
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import Movie from './local/movie'
 
 class App extends Component {
   constructor(props) {
@@ -14,8 +16,8 @@ class App extends Component {
       loading: true,
       apiData: [],
       languages: Languages,
-      ready: false,
-      back: null
+      back: null,
+      backFadeOut: false
     }
   }
 
@@ -29,7 +31,24 @@ class App extends Component {
   }
 
   bgCallBack = (bg) => {
-    this.setState({ back: bg })
+    if (bg === null) {
+      this.setState({ backFadeOut: true })
+      setTimeout(() => {
+        this.setState({
+          back: bg,
+          backFadeOut: false
+        })
+      }, 1000)
+    } else {
+      this.setState({
+        back: bg
+      })
+      setTimeout(() => {
+        this.setState({
+          backFadeOut: false
+        })
+      }, 1000)
+    }
   }
 
   pickLanguage = function (lang) {
@@ -55,46 +74,57 @@ class App extends Component {
       this.warningFire(`Something went wrong on our end! Please wait a moment, and try your search again!`)
     }).finally(() => {
       this.setState({
-        loading: false,
-        ready: true
+        loading: false
       })
     })
   }
 
   render() {
     return (
-      <main>
-        <CSSTransition
-          in={this.state.back !== null}
-          timeout={2000}
-          classNames="loadBGFade"
-          unmountOnExit
-        >
-          <div className="backDrop" style={{ backgroundImage: `url("${this.state.back}")`}}></div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.loading}
-          timeout={5000}
-          classNames="loadFade"
-          unmountOnExit
-        >
-          <LoadingModal />
-        </CSSTransition>
-        <div className="wrapper">
-          {this.state.loading === false ?
-            <div className="movieGrid">
-              {
-                this.state.apiData.map((movie, key) => {
-                  return (
-                    <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} key={key} cardNumber={key} ready={this.state.ready} backDrop={this.bgCallBack} />
-                  )
-                })
-              }
-            </div>
-            : null
-          }
-        </div>
-      </main>
+      <Router>
+        <main>
+          <Switch>
+            <Route exact path="/">
+              <header>
+              <h1>PAUL AND KYLE'S HORROR MOVIE LIST</h1>
+              </header>
+              <CSSTransition
+                in={this.state.back !== null && this.state.backFadeOut === false}
+                timeout={1000}
+                classNames="loadBGFade"
+                unmountOnExit>
+                <div className="backDrop" style={{ backgroundImage: `radial-gradient(transparent, #000), url("${this.state.back}")` }}></div>
+              </CSSTransition>
+              <CSSTransition
+                in={this.state.loading}
+                timeout={500}
+                classNames="loadFade"
+                unmountOnExit>
+                <LoadingModal />
+              </CSSTransition>
+              <div className="wrapper">
+                {this.state.loading === false ?
+                  <div className="movieGrid">
+                    {
+                      this.state.apiData.map((movie, key) => {
+                        return (
+                          <Link to={`/movie/${movie.id}`} className='cardBox'>
+                            <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} key={key} cardNumber={key} backDrop={this.bgCallBack} ready={this.state.backFadeOut === false && this.state.back === null} />
+                          </Link>
+                        )
+                      })
+                    }
+                  </div>
+                  : null
+                }
+              </div>
+            </Route>
+            <Route path={`/movie/:movieId`}>
+              <Movie movieData={this.state.apiData} />
+            </Route>
+          </Switch>
+        </main>
+      </Router>
     )
   }
 }

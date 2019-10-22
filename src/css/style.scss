@@ -1,3 +1,90 @@
+@import 'partials/normalize';
+
+body {
+  background-color: #111;
+  color: #FFF;
+}
+
+h1 {
+  text-align: center;
+}
+
+a.cardBox {
+  text-decoration: inherit;
+  color: inherit;
+  font-style: inherit;
+}
+
+.cardBox {
+  display: flex;
+  width: calc(25% - 80px);
+  min-width: 150px;
+  max-width: 300px;
+  margin: 30px;
+  padding: 10px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  background: rgba(66, 66, 66, .66);
+  border-radius: 10px;
+  &:hover {
+    box-shadow: 0 0 0 1px #fff;
+    background: rgba(99, 99, 99, .99);
+    opacity: 1 !important;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  h5 {
+    text-align: center !important;
+  }
+}
+
+.card a {
+  text-decoration: none;
+  color: #99F
+}
+
+.card figcaption {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .7);
+  top: 0;
+  left: 0;
+  transition: opacity .5s;
+}
+
+.card {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  &:hover figcaption {
+    opacity: 1;
+  }
+  h5,
+  h6 {
+    width: 100%;
+  }
+}
+
+main {
+  position: relative;
+}
+
 h3,
 h4,
 h5,
@@ -7,6 +94,7 @@ h6 {
 
 img {
   max-width: 100%;
+  display: block;
 }
 
 .wrapper {
@@ -20,11 +108,10 @@ img {
 
 .backDrop {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-size: cover;
-  background-color: #000;
   margin: 0;
-  position: absolute;
+  position: fixed;
   z-index: -1;
   opacity: 0;
 }
@@ -34,16 +121,16 @@ img {
 }
 
 .loadBGFade-enter-active {
-  opacity: 1;
+  opacity: .8;
   transition: opacity 1s
 }
 
 .loadBGFade-enter-done {
-  opacity:1;
+  opacity: .8;
 }
 
 .loadBGFade-exit {
-  opacity: 1;
+  opacity: .8;
 }
 
 .loadBGFade-exit-active {
@@ -56,28 +143,15 @@ img {
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
-  .card {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: calc(20% - 55px);
-    min-width: 150px;
-    max-width: 300px;
-    margin: 15px;
-    padding: 10px;
-    justify-content: flex-end;
-    position: relative;
-  }
-}
-
-.card {
-  opacity: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .cardTitle {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  width: 100%;
 }
 
 
