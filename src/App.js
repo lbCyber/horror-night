@@ -5,6 +5,7 @@ import axios from 'axios'
 import MovieCard from './local/movieCard'
 import Languages from './local/languages'
 import './css/style.css'
+import { CSSTransition } from 'react-transition-group'
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class App extends Component {
     this.state = {
       loading: true,
       apiData: [],
-      languages: Languages
+      languages: Languages,
+      ready: false
     }
   }
 
@@ -31,16 +33,12 @@ class App extends Component {
       return language.iso_639_1 === lang;
     }
     const output = this.state.languages.find(langCompare); //Find the language
-    if ((output["name"] === '') || (output["name"] === output["english_name"])) {
-      return `${output["english_name"]}` //Return English name if 'name' is blank or if 'name' and 'english_name' match
-    } else {
-      return `${output["english_name"]} (${output["name"]})` //Return English name
-    }
+    return `${output["english_name"]}` //Return English name
   }
 
   componentDidMount() {
     axios({
-      url: 'https://api.themoviedb.org/3/list/124382',
+      url: 'https://api.themoviedb.org/3/list/124441',
       method: 'GET',
       dataType: 'json',
       params: {
@@ -49,26 +47,37 @@ class App extends Component {
     }).then(response => {
       this.setState({ apiData: response.data.items })
     }).catch(error => {  // If nothing matched, something went wrong on your end!
-      console.log(error)
       this.warningFire(`Something went wrong on our end! Please wait a moment, and try your search again!`)
     }).finally(() => {
-      this.setState({ loading: false })
+      this.setState({
+        loading: false,
+        ready: true
+      })
     })
   }
   render() {
     return (
       <React.Fragment>
-        {this.state.loading ?
-          <LoadingModal />
-          : null
-        }
-        <div className="movieGrid">
-          {
-            this.state.apiData.map((movie, key) => {
-              return (
-                <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} key={key} />
-              )
-            })
+          <CSSTransition
+            in={this.state.loading}
+            timeout={5000}
+            classNames="loadFade"
+            unmountOnExit
+          >
+            <LoadingModal />
+          </CSSTransition>
+        <div className="wrapper">
+          {this.state.loading === false ?
+            <div className="movieGrid">
+              {
+                this.state.apiData.map((movie, key) => {
+                  return (
+                    <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} key={key} cardNumber={key} ready={this.state.ready} />
+                  )
+                })
+              }
+            </div>
+            : null
           }
         </div>
       </React.Fragment>

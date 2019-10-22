@@ -1,15 +1,77 @@
-body {
-  width:100vw;
+h3,
+h4,
+h5,
+h6 {
+  margin: 5px 0 10px;
 }
+
 img {
-  max-width:100%;
+  max-width: 100%;
 }
+
+.wrapper {
+  max-width: 1280px;
+  overflow:hidden;
+  margin:0 auto;
+}
+
 .movieGrid {
-  display:flex;
-  flex-wrap:wrap;
-  width:100%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content:center;
   .card {
-    width:calc(25% - 20px);
-    padding:10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: calc(20% - 55px);
+    min-width: 150px;
+    max-width: 300px;
+    margin: 15px;
+    padding: 10px;
+    justify-content: flex-end;
+    position: relative;
   }
+}
+
+.card {
+  opacity: 0;
+}
+
+.cardTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+
+/*  Loading Modal Transitions */
+
+.loadFade-enter {
+  opacity: 0;
+}
+
+.loadFade-enter-active {
+  opacity: 1;
+  transition: opacity .5s
+}
+
+.loadFade-exit {
+  opacity: 1;
+}
+
+.loadFade-exit-active {
+  opacity: 0;
+  transition: opacity .5s
+}
+
+.cardLoadFade-enter {
+  opacity: 0;
+  left: 75px;
+}
+
+.cardLoadFade-enter-active, .cardLoadFade-enter-done {
+  opacity: 1;
+  left: 0;
+  transition: opacity 1s, left 1.5s
 }
