@@ -10,7 +10,41 @@ img {
 .wrapper {
   max-width: 1280px;
   overflow: hidden;
-  margin: 0 auto; }
+  margin: 0 auto;
+  z-index: 1;
+  background: transparent;
+  position: relative; }
+
+.backDrop {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-color: #000;
+  margin: 0;
+  position: absolute;
+  z-index: -1;
+  opacity: 0; }
+
+.loadBGFade-enter {
+  opacity: 0; }
+
+.loadBGFade-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s; }
+
+.loadBGFade-enter-done {
+  opacity: 1; }
+
+.loadBGFade-exit {
+  opacity: 1; }
+
+.loadBGFade-exit-active {
+  opacity: 0;
+  -webkit-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s; }
 
 .movieGrid {
   display: -webkit-box;
@@ -79,7 +113,8 @@ img {
   opacity: 0;
   left: 75px; }
 
-.cardLoadFade-enter-active, .cardLoadFade-enter-done {
+.cardLoadFade-enter-active,
+.cardLoadFade-enter-done {
   opacity: 1;
   left: 0;
   -webkit-transition: opacity 1s, left 1.5s;

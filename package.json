@@ -8,6 +8,7 @@
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
     "react-transition-group": "^4.3.0",
+    "styled-components": "^4.4.0",
     "swal": "^0.1.0",
     "sweetalert2": "^8.18.5"
   },

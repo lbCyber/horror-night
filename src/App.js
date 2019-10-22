@@ -14,7 +14,8 @@ class App extends Component {
       loading: true,
       apiData: [],
       languages: Languages,
-      ready: false
+      ready: false,
+      back: null
     }
   }
 
@@ -25,6 +26,10 @@ class App extends Component {
       type: 'error',
       confirmButtonText: 'Okay'
     })
+  }
+
+  bgCallBack = (bg) => {
+    this.setState({ back: bg })
   }
 
   pickLanguage = function (lang) {
@@ -55,24 +60,33 @@ class App extends Component {
       })
     })
   }
+
   render() {
     return (
-      <React.Fragment>
-          <CSSTransition
-            in={this.state.loading}
-            timeout={5000}
-            classNames="loadFade"
-            unmountOnExit
-          >
-            <LoadingModal />
-          </CSSTransition>
+      <main>
+        <CSSTransition
+          in={this.state.back !== null}
+          timeout={2000}
+          classNames="loadBGFade"
+          unmountOnExit
+        >
+          <div className="backDrop" style={{ backgroundImage: `url("${this.state.back}")`}}></div>
+        </CSSTransition>
+        <CSSTransition
+          in={this.state.loading}
+          timeout={5000}
+          classNames="loadFade"
+          unmountOnExit
+        >
+          <LoadingModal />
+        </CSSTransition>
         <div className="wrapper">
           {this.state.loading === false ?
             <div className="movieGrid">
               {
                 this.state.apiData.map((movie, key) => {
                   return (
-                    <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} key={key} cardNumber={key} ready={this.state.ready} />
+                    <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} key={key} cardNumber={key} ready={this.state.ready} backDrop={this.bgCallBack} />
                   )
                 })
               }
@@ -80,7 +94,7 @@ class App extends Component {
             : null
           }
         </div>
-      </React.Fragment>
+      </main>
     )
   }
 }

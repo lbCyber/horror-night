@@ -25,6 +25,11 @@ class MovieCard extends Component {
     )
   }
 
+  setBackDrop = (img) => {
+    this.props.backDrop(img)
+    console.log(`set bg to ${img}`)
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -33,7 +38,7 @@ class MovieCard extends Component {
               in={this.state.loaded}
               timeout={100}
               classNames="cardLoadFade">
-              <div className="card" id={`card${this.props.cardNumber}`}>
+            <div className="card" id={`card${this.props.cardNumber}`} onMouseEnter={()=>{this.setBackDrop(`https://image.tmdb.org/t/p/w1280${this.props.moviePick.backdrop_path}`)}} onMouseLeave={()=>{this.setBackDrop(null)}}>
                 <div className="cardTitle">
                   <h4>{`${this.props.moviePick.title}`}</h4>
                   <h4>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h4>
