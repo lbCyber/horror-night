@@ -1,0 +1,38 @@
+@import "partials/colorcodes";
+
+footer {
+  align-items: center;
+  bottom: 0;
+  color: #ccc;
+  display: flex !important;
+  font-size: 1rem;
+  justify-content: center;
+  letter-spacing: 0.5rem;
+  overflow: hidden;
+  padding: 15px 0;
+  text-transform: uppercase;
+  width: 100%;
+  z-index: 999;
+  background-color: #222;
+  height: 20px;
+  position: absolute;
+  transition: padding 0.5s, height 0.5s, background-color 0.5s, color 0.5s;
+  p {
+    margin: 0;
+    font-size: 1.1rem
+  }
+  a {
+    color: $lightBlue;
+    text-decoration: underline;
+    transition: color 0.5s;
+    &:hover {
+      color: #fff;
+    }
+  }
+  &:hover {
+    height: 40px;
+    padding: 30px 0;
+    color: #fff;
+    background-color: #0a0a0a;
+  }
+}

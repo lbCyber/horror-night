@@ -284,7 +284,8 @@ a.cardBox {
     width: 100%; }
 
 main {
-  position: relative; }
+  position: relative;
+  padding-bottom: 50px; }
 
 h3,
 h4,

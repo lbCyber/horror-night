@@ -8,6 +8,7 @@ import './css/style.css'
 import { CSSTransition } from 'react-transition-group'
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Movie from './local/movie'
+import Footer from './local/footer'
 
 class App extends Component {
   constructor(props) {
@@ -108,8 +109,8 @@ class App extends Component {
                     {
                       this.state.apiData.map((movie, key) => {
                         return (
-                          <Link to={`/movie/${movie.id}`} className='cardBox'>
-                            <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} key={key} cardNumber={key} backDrop={this.bgCallBack} ready={this.state.backFadeOut === false && this.state.back === null} />
+                          <Link to={`/movie/${movie.id}`} className='cardBox' key={key}>
+                            <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} cardNumber={key} backDrop={this.bgCallBack} ready={this.state.backFadeOut === false && this.state.back === null} />
                           </Link>
                         )
                       })
@@ -123,6 +124,7 @@ class App extends Component {
               <Movie movieData={this.state.apiData} />
             </Route>
           </Switch>
+        <Footer />
         </main>
       </Router>
     )
