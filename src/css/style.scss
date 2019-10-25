@@ -81,6 +81,7 @@ a.cardBox {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  opacity:0;
   &:hover figcaption {
     opacity: 1;
   }
@@ -88,6 +89,20 @@ a.cardBox {
   h6 {
     width: 100%;
   }
+  h6:last-child {
+    line-height:0;
+    margin: 2px 0 10px !important;
+  }
+}
+
+.pkRatings {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ratingNumber {
+  width:auto !important;
 }
 
 main {

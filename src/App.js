@@ -11,14 +11,15 @@ import Movie from './local/movie'
 import Footer from './local/footer'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       loading: true,
       apiData: [],
       languages: Languages,
       back: null,
-      backFadeOut: false
+      backFadeOut: false,
+      review: {}
     }
   }
 
@@ -63,14 +64,20 @@ class App extends Component {
 
   componentDidMount() {
     axios({
-      url: 'https://api.themoviedb.org/3/list/124441',
+      url: './json/reviews.json',
       method: 'GET',
-      dataType: 'json',
-      params: {
-        'api_key': '9c167d58adbd031f02b8a3cbcf7273c1'
-      }
+      dataType: 'json'
     }).then(response => {
-      this.setState({ apiData: response.data.items })
+      this.setState({ review: response.data })
+    }).then(() => {
+      axios({
+        url: 'https://api.themoviedb.org/3/list/124441',
+        method: 'GET',
+        dataType: 'json',
+        params: { 'api_key': '9c167d58adbd031f02b8a3cbcf7273c1' }
+      }).then(response => {
+        this.setState({ apiData: response.data.items })
+      })
     }).catch(error => {  // If nothing matched, something went wrong on your end!
       this.warningFire(`Something went wrong on our end! Please wait a moment, and try your search again!`)
     }).finally(() => {
@@ -83,19 +90,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <main>
-          <Switch>
-            <Route exact path="/">
-              <header>
-              <h1>PAUL AND KYLE'S HORROR MOVIE LIST</h1>
-              </header>
-              <CSSTransition
-                in={this.state.back !== null && this.state.backFadeOut === false}
-                timeout={1000}
-                classNames="loadBGFade"
-                unmountOnExit>
-                <div className="backDrop" style={{ backgroundImage: `radial-gradient(transparent, #000), url("${this.state.back}")` }}></div>
-              </CSSTransition>
+        <Switch>
+          <Route exact path="/">
+            <CSSTransition
+              in={this.state.back !== null && this.state.backFadeOut === false}
+              timeout={1000}
+              classNames="loadBGFade"
+              unmountOnExit>
+              <div className="backDrop" style={{ backgroundImage: `radial-gradient(transparent, #000), url("${this.state.back}")` }}></div>
+            </CSSTransition>
+            {(this.state.loading === true) ?
               <CSSTransition
                 in={this.state.loading}
                 timeout={500}
@@ -103,29 +107,31 @@ class App extends Component {
                 unmountOnExit>
                 <LoadingModal />
               </CSSTransition>
-              <div className="wrapper">
-                {this.state.loading === false ?
+              : <main>
+                <header>
+                  <h1>PAUL AND KYLE'S HORROR MOVIE LIST</h1>
+                </header>
+                <div className="wrapper">
                   <div className="movieGrid">
                     {
                       this.state.apiData.map((movie, key) => {
                         return (
                           <Link to={`/movie/${movie.id}`} className='cardBox' key={key}>
-                            <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} cardNumber={key} backDrop={this.bgCallBack} ready={this.state.backFadeOut === false && this.state.back === null} />
+                            <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} cardNumber={key} backDrop={this.bgCallBack} ready={this.state.backFadeOut === false && this.state.back === null} reviewData={this.state.review[movie.id]} />
                           </Link>
                         )
                       })
                     }
                   </div>
-                  : null
-                }
-              </div>
-            </Route>
-            <Route path={`/movie/:movieId`}>
-              <Movie movieData={this.state.apiData} />
-            </Route>
-          </Switch>
+                </div>
+              </main>
+            }
+          </Route>
+          <Route path={`/movie/:movieId`}>
+            <Movie movieData={this.state.apiData} />
+          </Route>
+        </Switch>
         <Footer />
-        </main>
       </Router>
     )
   }
