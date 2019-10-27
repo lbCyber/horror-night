@@ -8,6 +8,7 @@ import './css/style.css'
 import { CSSTransition } from 'react-transition-group'
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Movie from './local/movie'
+import Header from './local/header'
 import Footer from './local/footer'
 
 class App extends Component {
@@ -108,15 +109,18 @@ class App extends Component {
                 <LoadingModal />
               </CSSTransition>
               : <main>
-                <header>
-                  <h1>PAUL AND KYLE'S HORROR MOVIE LIST</h1>
-                </header>
+                <Header />
                 <div className="wrapper">
                   <div className="movieGrid">
                     {
                       this.state.apiData.map((movie, key) => {
                         return (
-                          <Link to={`/movie/${movie.id}`} className='cardBox' key={key}>
+                          <Link to={{
+                            pathname: `/movie/${movie.id}`,
+                            state: {
+                              moviePick: movie
+                            }
+                          }} className='cardBox' key={key}>
                             <MovieCard moviePick={movie} language={this.pickLanguage(movie.original_language)} cardNumber={key} backDrop={this.bgCallBack} ready={this.state.backFadeOut === false && this.state.back === null} reviewData={this.state.review[movie.id]} />
                           </Link>
                         )
@@ -127,8 +131,9 @@ class App extends Component {
               </main>
             }
           </Route>
-          <Route path={`/movie/:movieId`}>
-            <Movie movieData={this.state.apiData} />
+          <Route path={`/movie/:movieId`}
+            render={(props) => <Movie movie={props.location.state.moviePick} review={this.state.review[props.match.params.movieId]} />}
+          >
           </Route>
         </Switch>
         <Footer />
