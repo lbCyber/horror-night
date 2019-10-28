@@ -14,8 +14,8 @@ footer {
   width: 100%;
   z-index: 999;
   background-color: rgba(66,66,66,.8);
-  height: 18px;
-  position: fixed;
+  height: 24px;
+  position: relative;
   transition: padding 0.5s, height 0.5s, background-color 0.5s, color 0.5s;
   p {
     margin: 0;
@@ -31,8 +31,8 @@ footer {
     }
   }
   &:hover {
-    height: 40px;
-    padding: 20px 0;
+    // height: 40px;
+    // padding: 20px 0;
     color: #fff;
     background-color: #0a0a0a;
   }

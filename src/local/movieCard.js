@@ -57,34 +57,36 @@ class MovieCard extends Component {
           in={this.state.loaded}
           timeout={100}
           classNames="cardLoadFade">
-        <figure className="card" tabIndex={this.props.cardNumber + 2} id={`card${this.props.cardNumber}`} onMouseEnter={() => {
-          this.setHover(true)
-          setTimeout(() => {
-            if (this.props.ready && this.state.hover) {
-              this.setBackDrop(`https://image.tmdb.org/t/p/w1280${this.props.moviePick.backdrop_path}`)
-            }
-          }, 1000)
-        }} onMouseLeave={() => {
-          this.setHover(false)
-        }}>
-          <div className="cardTitle">
-            <h4>{`${this.props.moviePick.title}`}</h4>
-            <h5>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h5>
-          </div>
-          <div className="imageContainer">
-            <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
-            <figcaption>
-              <h4>{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>
-              <h5>Click for review</h5>
-            </figcaption>
-          </div>
-          <div className="pkRatings">
-            <h5 className="ratingNumber">{`Paul: ${this.state.Paul}/5`}</h5>
-            <h5 className="ratingNumber">{`Kyle: ${this.state.Kyle}/5`}</h5>
-          </div>
-          <h6>Language: {this.props.language}</h6>
-          <h6>TMDB Rating: {this.props.moviePick.vote_average}/10</h6>
-        </figure>
+          <figure className="card" tabIndex={this.props.cardNumber + 2} id={`card${this.props.cardNumber}`} onMouseEnter={() => {
+            this.setHover(true)
+            setTimeout(() => {
+              if (this.props.ready && this.state.hover) {
+                this.setBackDrop(`https://image.tmdb.org/t/p/w1280${this.props.moviePick.backdrop_path}`)
+              }
+            }, 1000)
+          }} onMouseLeave={() => {
+            this.setHover(false)
+          }}>
+            <div className="cardTitle">
+              <h4>{`${this.props.moviePick.title}`}</h4>
+              <h5>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h5>
+            </div>
+            <div className="imageContainer" onMouseDown={()=>this.props.callback(this.props.moviePick.id)}>
+              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
+              <figcaption>
+                <div className="clickReviewBox" >
+                  <h4>{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>
+                  <h5>Click for review</h5>
+                </div>
+              </figcaption>
+            </div>
+            <div className="pkRatings">
+              <h5 className="ratingNumber">{`Paul: ${this.state.Paul}/5`}</h5>
+              <h5 className="ratingNumber">{`Kyle: ${this.state.Kyle}/5`}</h5>
+            </div>
+            <h6>Language: {this.props.language}</h6>
+            <h6><a href={`https://www.themoviedb.org/movie/${this.props.moviePick.id}`} target="_blank" rel="noopener noreferrer">TMDB Rating:</a> {this.props.moviePick.vote_average}/10</h6>
+          </figure>
         </CSSTransition>
       </React.Fragment>
     )

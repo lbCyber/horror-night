@@ -183,12 +183,7 @@ body {
 h1 {
   text-align: center; }
 
-a.cardBox {
-  text-decoration: inherit;
-  color: inherit;
-  font-style: inherit; }
-
-.cardBox {
+.card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -208,8 +203,18 @@ a.cardBox {
   justify-content: flex-end;
   position: relative;
   background: rgba(66, 66, 66, 0.66);
-  border-radius: 2px; }
-  .cardBox:hover {
+  border-radius: 2px;
+  height: 100%;
+  opacity: 0; }
+  .card:hover figcaption {
+    opacity: 1; }
+  .card h5,
+  .card h6 {
+    width: 100%; }
+  .card h6:last-child {
+    line-height: 0;
+    margin: 2px 0 10px !important; }
+  .card:hover {
     -webkit-box-shadow: 0 0 0 1px #fff;
     box-shadow: 0 0 0 1px #fff;
     background: rgba(99, 99, 99, 0.99);
@@ -235,7 +240,8 @@ a.cardBox {
 
 .card a {
   text-decoration: none;
-  color: #99F; }
+  color: #99F;
+  font-style: inherit; }
 
 .card figcaption {
   opacity: 0;
@@ -260,32 +266,17 @@ a.cardBox {
   background: rgba(0, 0, 0, 0.7);
   top: 0;
   left: 0;
-  -webkit-transition: opacity .5s;
-  -o-transition: opacity .5s;
-  transition: opacity .5s; }
+  -webkit-transition: opacity .5s, color .5s;
+  -o-transition: opacity .5s, color .5s;
+  transition: opacity .5s, color .5s;
+  cursor: pointer; }
+  .card figcaption:hover {
+    color: #99F; }
 
-.card {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  opacity: 0; }
-  .card:hover figcaption {
-    opacity: 1; }
-  .card h5,
-  .card h6 {
-    width: 100%; }
-  .card h6:last-child {
-    line-height: 0;
-    margin: 2px 0 10px !important; }
+.clickReviewBox {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  padding: 20px; }
 
 .pkRatings {
   width: 100%;
@@ -301,7 +292,8 @@ a.cardBox {
 
 main {
   position: relative;
-  padding-bottom: 50px; }
+  padding-bottom: 50px;
+  min-height: calc(100vh - 60px); }
 
 h3,
 h4,

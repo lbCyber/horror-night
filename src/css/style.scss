@@ -1,5 +1,4 @@
 @import 'partials/normalize';
-
 body {
   background-color: #111;
   color: #FFF;
@@ -9,13 +8,7 @@ h1 {
   text-align: center;
 }
 
-a.cardBox {
-  text-decoration: inherit;
-  color: inherit;
-  font-style: inherit;
-}
-
-.cardBox {
+.card {
   display: flex;
   width: calc(25% - 80px);
   min-width: 150px;
@@ -28,6 +21,19 @@ a.cardBox {
   position: relative;
   background: rgba(66, 66, 66, .66);
   border-radius: 2px;
+  height: 100%;
+  opacity: 0;
+  &:hover figcaption {
+    opacity: 1;
+  }
+  h5,
+  h6 {
+    width: 100%;
+  }
+  h6:last-child {
+    line-height: 0;
+    margin: 2px 0 10px !important;
+  }
   &:hover {
     box-shadow: 0 0 0 1px #fff;
     background: rgba(99, 99, 99, .99);
@@ -45,7 +51,7 @@ a.cardBox {
   position: relative;
   img {
     object-fit: cover;
-    height:100%;
+    height: 100%;
   }
   h5 {
     text-align: center !important;
@@ -54,7 +60,8 @@ a.cardBox {
 
 .card a {
   text-decoration: none;
-  color: #99F
+  color: #99F;
+  font-style: inherit;
 }
 
 .card figcaption {
@@ -70,31 +77,18 @@ a.cardBox {
   background: rgba(0, 0, 0, .7);
   top: 0;
   left: 0;
-  transition: opacity .5s;
-}
-
-.card {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  opacity:0;
-  &:hover figcaption {
-    opacity: 1;
-  }
-  h5,
-  h6 {
-    width: 100%;
-  }
-  h6:last-child {
-    line-height:0;
-    margin: 2px 0 10px !important;
+  transition: opacity .5s, color .5s;
+  cursor: pointer;
+  &:hover {
+    color: #99F;
   }
 }
 
+.clickReviewBox {
+  background-color: rgba(0, 0, 0, .8);
+  border-radius:15px;
+  padding: 20px;
+}
 .pkRatings {
   width: 100%;
   display: flex;
@@ -102,12 +96,13 @@ a.cardBox {
 }
 
 .ratingNumber {
-  width:auto !important;
+  width: auto !important;
 }
 
 main {
   position: relative;
   padding-bottom: 50px;
+  min-height: calc(100vh - 60px);
 }
 
 h3,
@@ -179,8 +174,8 @@ img {
   width: 100%;
   min-height: 55px;
   & h5 {
-    max-width:4em;
-    text-align:right;
+    max-width: 4em;
+    text-align: right;
   }
 }
 
