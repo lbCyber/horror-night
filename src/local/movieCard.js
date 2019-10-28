@@ -71,7 +71,10 @@ class MovieCard extends Component {
               <h4>{`${this.props.moviePick.title}`}</h4>
               <h5>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h5>
             </div>
-            <div className="imageContainer" onMouseDown={()=>this.props.callback(this.props.moviePick.id)}>
+            <div className="imageContainer" onMouseDown={()=>{
+              this.props.callback(this.props.moviePick.id)
+              this.props.backDrop(this.props.moviePick.id)
+              }}>
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
               <figcaption>
                 <div className="clickReviewBox" >

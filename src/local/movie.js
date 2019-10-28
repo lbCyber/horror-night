@@ -15,7 +15,10 @@ class Movie extends Component {
     return (
       <React.Fragment>
         <main class="moviePage">
-          <p>blep</p>
+          <p className="clickable" onMouseDown={()=>{
+            this.props.callback(null)
+            this.props.backgroundCB(null)
+            }}>Go Back</p>
         </main>
       </React.Fragment>
     )

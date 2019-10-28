@@ -123,7 +123,7 @@ class App extends Component {
                     })
                   }
                 </div>
-                : <Movie moviePicked={this.state.apiData.find((i)=>{return i.id === this.state.moviePick})} movieReviews={this.state.review[this.state.moviePick]}/>
+                : <Movie moviePicked={this.state.apiData.find((i) => { return i.id === this.state.moviePick })} movieReviews={this.state.review[this.state.moviePick]} callback={this.moviePickCB} backgroundCB={this.bgCallBack} />
                 }
             </div>
           </main>
