@@ -118,12 +118,12 @@ class App extends Component {
                   {
                     this.state.apiData.map((movie, key) => {
                       return (
-                        <MovieCard moviePick={movie} key={key} language={this.pickLanguage(movie.original_language)} cardNumber={key} backDrop={this.bgCallBack} ready={this.state.backFadeOut === false && this.state.back === null} reviewData={this.state.review[movie.id]} callback={this.moviePickCB}/>
+                        <MovieCard moviePick={movie} key={key} language={this.pickLanguage(movie.original_language)} cardNumber={key} ready={this.state.backFadeOut === false && this.state.back === null} reviewData={this.state.review[movie.id]} callback={this.moviePickCB} backDrop={this.bgCallBack}/>
                       )
                     })
                   }
                 </div>
-                : <Movie moviePicked={this.state.apiData.find((i) => { return i.id === this.state.moviePick })} movieReviews={this.state.review[this.state.moviePick]} callback={this.moviePickCB} backgroundCB={this.bgCallBack} />
+                : <Movie moviePick={this.state.apiData.find((i) => { return i.id === this.state.moviePick })} movieReviews={this.state.review[this.state.moviePick]} callback={this.moviePickCB} backgroundCB={this.bgCallBack} languages={this.state.languages} backDrop={this.bgCallBack} />
                 }
             </div>
           </main>

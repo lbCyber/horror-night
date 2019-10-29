@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group'
-import './../css/style.css'
+import './../css/components/movieCard.css'
 
 class MovieCard extends Component {
   constructor(props) {
@@ -71,10 +71,11 @@ class MovieCard extends Component {
               <h4>{`${this.props.moviePick.title}`}</h4>
               <h5>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h5>
             </div>
-            <div className="imageContainer" onMouseDown={()=>{
+            <div className="imageContainer" onMouseDown={() => {
               this.props.callback(this.props.moviePick.id)
-              this.props.backDrop(this.props.moviePick.id)
-              }}>
+              this.setBackDrop(`https://image.tmdb.org/t/p/w1280${this.props.moviePick.backdrop_path}`)
+              window.scrollTo(0,0)
+            }}>
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
               <figcaption>
                 <div className="clickReviewBox" >

@@ -1,4 +1,7 @@
 @import 'partials/normalize';
+
+// Base Styles
+
 body {
   background-color: #111;
   color: #FFF;
@@ -6,103 +9,6 @@ body {
 
 h1 {
   text-align: center;
-}
-
-.card {
-  display: flex;
-  width: calc(25% - 80px);
-  min-width: 150px;
-  max-width: 300px;
-  margin: 30px;
-  padding: 10px 10px 15px;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: flex-end;
-  position: relative;
-  background: rgba(66, 66, 66, .66);
-  border-radius: 2px;
-  height: 100%;
-  opacity: 0;
-  &:hover figcaption {
-    opacity: 1;
-  }
-  h5,
-  h6 {
-    width: 100%;
-  }
-  h6:last-child {
-    line-height: 0;
-    margin: 2px 0 10px !important;
-  }
-  &:hover {
-    box-shadow: 0 0 0 1px #fff;
-    background: rgba(99, 99, 99, .99);
-    opacity: 1 !important;
-  }
-}
-
-.pkRatings {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.imageContainer {
-  position: relative;
-  img {
-    object-fit: cover;
-    height: 100%;
-  }
-  h5 {
-    text-align: center !important;
-  }
-}
-
-.card a {
-  text-decoration: none;
-  color: #99F;
-  font-style: inherit;
-}
-
-.card figcaption {
-  opacity: 0;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, .7);
-  top: 0;
-  left: 0;
-  transition: opacity .5s, color .5s;
-  cursor: pointer;
-  &:hover {
-    color: #99F;
-  }
-}
-
-.clickReviewBox {
-  background-color: rgba(0, 0, 0, .8);
-  border-radius:15px;
-  padding: 20px;
-}
-.pkRatings {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.ratingNumber {
-  width: auto !important;
-}
-
-main {
-  position: relative;
-  padding-bottom: 50px;
-  min-height: calc(100vh - 60px);
 }
 
 h3,
@@ -116,6 +22,14 @@ img {
   max-width: 100%;
   display: block;
 }
+
+main {
+  position: relative;
+  padding-bottom: 50px;
+  min-height: calc(100vh - 60px);
+}
+
+// Common styles
 
 .wrapper {
   max-width: 1280px;
@@ -144,27 +58,65 @@ img {
   opacity: 0;
 }
 
-.loadBGFade-enter {
-  opacity: 0
-}
+// CSS Transition states
 
-.loadBGFade-enter-active {
-  opacity: .8;
-  transition: opacity 1s
-}
+  // Background
 
-.loadBGFade-enter-done {
-  opacity: .8;
-}
+  .loadBGFade-enter {
+    opacity: 0
+  }
 
-.loadBGFade-exit {
-  opacity: .8;
-}
+  .loadBGFade-enter-active {
+    opacity: .8;
+    transition: opacity 1s
+  }
 
-.loadBGFade-exit-active {
-  opacity: 0;
-  transition: opacity 1s
-}
+  .loadBGFade-enter-done {
+    opacity: .8;
+  }
+
+  .loadBGFade-exit {
+    opacity: .8;
+  }
+
+  .loadBGFade-exit-active {
+    opacity: 0;
+    transition: opacity 1s
+  }
+
+  // Loader
+
+  .loadFade-enter {
+    opacity: 0;
+  }
+
+  .loadFade-enter-active {
+    opacity: 1;
+    transition: opacity .5s
+  }
+
+  .loadFade-exit {
+    opacity: 1;
+  }
+
+  .loadFade-exit-active {
+    opacity: 0;
+    transition: opacity .5s
+  }
+
+  // Movie Card
+
+  .cardLoadFade-enter {
+    opacity: 0;
+    left: 75px;
+  }
+
+  .cardLoadFade-enter-active,
+  .cardLoadFade-enter-done {
+    opacity: 1;
+    left: 0;
+    transition: opacity 1s, left 1.5s
+  }
 
 .movieGrid {
   display: flex;
@@ -173,49 +125,4 @@ img {
   justify-content: center;
   position: relative;
   z-index: 1;
-}
-
-.cardTitle {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-  min-height: 55px;
-  & h5 {
-    max-width: 4em;
-    text-align: right;
-  }
-}
-
-
-/*  Loading Modal Transitions */
-
-.loadFade-enter {
-  opacity: 0;
-}
-
-.loadFade-enter-active {
-  opacity: 1;
-  transition: opacity .5s
-}
-
-.loadFade-exit {
-  opacity: 1;
-}
-
-.loadFade-exit-active {
-  opacity: 0;
-  transition: opacity .5s
-}
-
-.cardLoadFade-enter {
-  opacity: 0;
-  left: 75px;
-}
-
-.cardLoadFade-enter-active,
-.cardLoadFade-enter-done {
-  opacity: 1;
-  left: 0;
-  transition: opacity 1s, left 1.5s
 }
