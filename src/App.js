@@ -113,7 +113,7 @@ class App extends Component {
           unmountOnExit>
           <div className="backDrop" style={{ backgroundImage: `radial-gradient(transparent, #000), url("${this.state.back}")` }}></div>
         </CSSTransition>
-        <Header />
+        <Header moviePageActive={this.state.moviePick === null}/>
         {(this.state.loading === true) ?
           <CSSTransition
             in={this.state.loading}

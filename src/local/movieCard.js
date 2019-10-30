@@ -79,14 +79,21 @@ class MovieCard extends Component {
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
               <figcaption>
                 <div className="clickReviewBox" >
-                  <h4>{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>
+                  {(this.state.Paul + this.state.Kyle > 5) ?
+                  <h4 className="green">{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>
+                    : <h4 className="red">{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>
+                  }
                   <h5>Click for review</h5>
                 </div>
               </figcaption>
             </div>
             <div className="pkRatings">
-              <h5 className="ratingNumber">{`Paul: ${this.state.Paul}/5`}</h5>
-              <h5 className="ratingNumber">{`Kyle: ${this.state.Kyle}/5`}</h5>
+              {(this.state.Paul > 2) ?
+              <h5 className="ratingNumber green">{`Paul: ${this.state.Paul}/5`}</h5>
+                : <h5 className="ratingNumber red">{`Paul: ${this.state.Paul}/5`}</h5>}
+              {(this.state.Kyle > 2) ?
+                <h5 className="ratingNumber green">{`Kyle: ${this.state.Kyle}/5`}</h5>
+                : <h5 className="ratingNumber red">{`Kyle: ${this.state.Kyle}/5`}</h5>}
             </div>
             <h6>Language: {this.props.language}</h6>
             <h6><a href={`https://www.themoviedb.org/movie/${this.props.moviePick.id}`} target="_blank" rel="noopener noreferrer">TMDB Rating:</a> {this.props.moviePick.vote_average}/10</h6>

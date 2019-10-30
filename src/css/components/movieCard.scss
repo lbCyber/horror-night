@@ -47,12 +47,6 @@
   }
 }
 
-.card a {
-  text-decoration: none;
-  color: #99F;
-  font-style: inherit;
-}
-
 .card figcaption {
   opacity: 0;
   display: flex;
@@ -80,7 +74,7 @@
   width: 100%;
   min-height: 55px;
   & h5 {
-    max-width: 4em;
+    max-width: 3em;
     text-align: right;
   }
 }
@@ -89,6 +83,7 @@
   background-color: rgba(0, 0, 0, .8);
   border-radius: 15px;
   padding: 20px;
+  text-align:center;
 }
 
 .pkRatings {

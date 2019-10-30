@@ -224,18 +224,44 @@ header {
   padding: 0;
   margin: 0; }
 
+/*
+
+    font-family: 'Sarabun', sans-serif;
+    font-family: 'Racing Sans One', cursive;
+
+*/
 body {
   background-color: #111;
-  color: #FFF; }
+  color: #FFF;
+  font-family: 'Sarabun', sans-serif; }
+
+h1,
+h2,
+h3 {
+  font-family: 'Racing Sans One', cursive; }
 
 h1 {
-  text-align: center; }
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 4rem; }
+
+h2 {
+  font-size: 2.5rem;
+  margin: 15px 0 10px;
+  text-transform: uppercase; }
+
+h4 {
+  text-transform: uppercase; }
 
 h3,
 h4,
 h5,
 h6 {
   margin: 5px 0 10px; }
+
+h6 {
+  font-size: .8rem;
+  font-weight: 600; }
 
 img {
   max-width: 100%;
@@ -245,6 +271,35 @@ main {
   position: relative;
   padding-bottom: 50px;
   min-height: calc(100vh - 60px); }
+
+a {
+  text-decoration: none;
+  color: #99F;
+  font-style: inherit;
+  -webkit-transition: color .5s, text-shadow .5s;
+  -o-transition: color .5s, text-shadow .5s;
+  transition: color .5s, text-shadow .5s; }
+  a:hover {
+    color: #FFF;
+    text-shadow: 0 0 5px #000; }
+
+p {
+  margin-top: 20px; }
+
+header {
+  margin: 20px auto; }
+  header .headerBlurb {
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 15px; }
+  header h1 {
+    margin: 20px auto; }
+  header h4 {
+    font-weight: 600;
+    text-transform: unset;
+    margin-bottom: 20px; }
 
 .wrapper {
   max-width: 1280px;
@@ -256,11 +311,12 @@ main {
 
 .clickable {
   cursor: pointer;
-  -webkit-transition: color .5s;
-  -o-transition: color .5s;
-  transition: color .5s; }
+  -webkit-transition: color .5s, text-shadow .5s;
+  -o-transition: color .5s, text-shadow .5s;
+  transition: color .5s, text-shadow .5s; }
   .clickable:hover {
-    color: #99F; }
+    color: #99F;
+    text-shadow: 0 0 5px #000; }
 
 .backDrop {
   width: 100%;
@@ -270,6 +326,16 @@ main {
   position: fixed;
   z-index: -1;
   opacity: 0; }
+
+.green {
+  font-size: .8rem;
+  font-weight: 600;
+  color: #393; }
+
+.red {
+  font-size: .8rem;
+  font-weight: 600;
+  color: #C55; }
 
 .loadBGFade-enter {
   opacity: 0; }
