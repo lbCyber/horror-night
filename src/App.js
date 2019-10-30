@@ -54,8 +54,19 @@ class App extends Component {
     }
   }
 
+  simpleBackCB = (e) => {
+    this.setState({
+      back: e,
+      backFadeOut: false
+    })
+  }
+
+  loadCB = (e) => {
+    this.setState({ loading: e })
+  }
+
   moviePickCB = (e) => {
-    this.setState({moviePick: e})
+    this.setState({ moviePick: e })
   }
 
   pickLanguage = function (lang) {
@@ -118,13 +129,13 @@ class App extends Component {
                   {
                     this.state.apiData.map((movie, key) => {
                       return (
-                        <MovieCard moviePick={movie} key={key} language={this.pickLanguage(movie.original_language)} cardNumber={key} ready={this.state.backFadeOut === false && this.state.back === null} reviewData={this.state.review[movie.id]} callback={this.moviePickCB} backDrop={this.bgCallBack}/>
+                        <MovieCard moviePick={movie} key={key} language={this.pickLanguage(movie.original_language)} cardNumber={key} ready={this.state.backFadeOut === false && this.state.back === null} reviewData={this.state.review[movie.id]} callback={this.moviePickCB} backDrop={this.bgCallBack} loading={this.loadCB} />
                       )
                     })
                   }
                 </div>
-                : <Movie moviePick={this.state.apiData.find((i) => { return i.id === this.state.moviePick })} movieReviews={this.state.review[this.state.moviePick]} callback={this.moviePickCB} backgroundCB={this.bgCallBack} languages={this.state.languages} backDrop={this.bgCallBack} />
-                }
+                : <Movie loading={this.loadCB} moviePick={this.state.apiData.find((i) => { return i.id === this.state.moviePick })} movieReviews={this.state.review[this.state.moviePick]} callback={this.moviePickCB} backDrop={this.simpleBackCB} languages={this.state.languages} />
+              }
             </div>
           </main>
         }

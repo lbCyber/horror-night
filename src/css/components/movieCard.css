@@ -3,8 +3,7 @@
   display: -ms-flexbox;
   display: flex;
   width: calc(25% - 80px);
-  min-width: 150px;
-  max-width: 300px;
+  min-width: 200px;
   margin: 30px;
   padding: 10px 10px 15px;
   -ms-flex-wrap: wrap;

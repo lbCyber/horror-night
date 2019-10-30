@@ -68,13 +68,13 @@ class MovieCard extends Component {
             this.setHover(false)
           }}>
             <div className="cardTitle">
-              <h4>{`${this.props.moviePick.title}`}</h4>
+              <h4>{(this.props.moviePick.title === "زیر سایه")?"Under the Shadow":`${this.props.moviePick.title}`}</h4>
               <h5>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h5>
             </div>
             <div className="imageContainer" onMouseDown={() => {
+              // this.props.loading(true)
               this.props.callback(this.props.moviePick.id)
-              this.setBackDrop(`https://image.tmdb.org/t/p/w1280${this.props.moviePick.backdrop_path}`)
-              window.scrollTo(0,0)
+              window.scrollTo(0, 0)
             }}>
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
               <figcaption>
