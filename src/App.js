@@ -4,6 +4,10 @@ import Swal from 'sweetalert2'
 import axios from 'axios'
 import MovieCard from './local/movieCard'
 import Languages from './local/languages'
+import './css/components/movieCard.css';
+import './css/components/moviePage.css';
+import './css/components/loading.css'
+import './css/components/footer.css'
 import './css/style.css'
 import { CSSTransition } from 'react-transition-group'
 import Movie from './local/movie'
@@ -34,23 +38,25 @@ class App extends Component {
   }
 
   bgCallBack = (bg) => {
-    if (bg === null) {
-      this.setState({ backFadeOut: true })
-      setTimeout(() => {
+    if (window.innerWidth > 768) {
+      if (bg === null) {
+        this.setState({ backFadeOut: true })
+        setTimeout(() => {
+          this.setState({
+            back: bg,
+            backFadeOut: false
+          })
+        }, 1000)
+      } else {
         this.setState({
-          back: bg,
-          backFadeOut: false
+          back: bg
         })
-      }, 1000)
-    } else {
-      this.setState({
-        back: bg
-      })
-      setTimeout(() => {
-        this.setState({
-          backFadeOut: false
-        })
-      }, 1000)
+        setTimeout(() => {
+          this.setState({
+            backFadeOut: false
+          })
+        }, 1000)
+      }
     }
   }
 
@@ -113,7 +119,7 @@ class App extends Component {
           unmountOnExit>
           <div className="backDrop" style={{ backgroundImage: `radial-gradient(transparent, #000), url("${this.state.back}")` }}></div>
         </CSSTransition>
-        <Header moviePageActive={this.state.moviePick === null}/>
+        <Header moviePageActive={this.state.moviePick === null} callback={this.moviePickCB} backDrop={this.bgCallBack} />
         {(this.state.loading === true) ?
           <CSSTransition
             in={this.state.loading}

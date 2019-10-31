@@ -16,7 +16,7 @@
   -ms-flex-pack: end;
   justify-content: flex-end;
   position: relative;
-  background: rgba(66, 66, 66, 0.66);
+  background-color: rgba(66, 66, 66, 0.66);
   border-radius: 2px;
   height: 100%;
   opacity: 0; }
@@ -31,7 +31,7 @@
   .card:hover {
     -webkit-box-shadow: 0 0 0 1px #fff;
     box-shadow: 0 0 0 1px #fff;
-    background: rgba(99, 99, 99, 0.99);
+    background-color: rgba(99, 99, 99, 0.99);
     opacity: 1 !important; }
 
 .pkRatings {
@@ -80,7 +80,7 @@
   transition: opacity .5s, color .5s;
   cursor: pointer; }
   .card figcaption:hover {
-    color: #99F; }
+    color: #FB5; }
 
 .cardTitle {
   display: -webkit-box;
@@ -115,3 +115,7 @@
 
 .ratingNumber {
   width: auto !important; }
+
+.legend {
+  font-size: 2rem;
+  color: #FB5; }

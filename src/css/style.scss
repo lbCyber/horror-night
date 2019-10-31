@@ -16,7 +16,7 @@
   h1,
   h2,
   h3 {
-    font-family: 'Racing Sans One', cursive;
+    font-family: 'Racing Sans One', serif;
   }
 
   h1 {
@@ -29,6 +29,10 @@
     font-size: 2.5rem;
     margin: 15px 0 10px;
     text-transform: uppercase;
+  }
+
+  h3 {
+    font-weight: 400;
   }
 
   h4 {
@@ -55,12 +59,11 @@
   main {
     position: relative;
     padding-bottom: 50px;
-    min-height: calc(100vh - 60px);
   }
 
   a {
     text-decoration: none;
-    color: #99F;
+    color: #FB5;
     font-style: inherit;
     transition: color .5s, text-shadow .5s;
     &:hover {
@@ -74,16 +77,18 @@
   }
 
   header {
-    margin: 20px auto;
+    margin: 0 auto 20px;
     .headerBlurb {
       width: 60%;
-      margin: 0 auto;
+      margin: 20px auto 0;
       padding: 30px;
       background-color: rgba(255, 255, 255, .15);
       border-radius: 15px;
+      line-height: 1.35rem;
     }
     h1 {
-      margin: 20px auto;
+      padding: 20px 0;
+      background-color: rgba(10, 10, 10, .85);
     }
     h4 {
       font-weight: 600;
@@ -106,9 +111,16 @@
     cursor: pointer;
     transition: color .5s, text-shadow .5s;
     &:hover {
-      color: #99F;
+      color: #FB5;
       text-shadow: 0 0 5px #000;
     }
+  }
+
+  .noHoverToolTip {
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+    width: 0;
   }
 
   .backDrop {
@@ -179,14 +191,12 @@
   // Movie Card
   .cardLoadFade-enter {
     opacity: 0;
-    left: 75px;
   }
 
   .cardLoadFade-enter-active,
   .cardLoadFade-enter-done {
     opacity: 1;
-    left: 0;
-    transition: opacity 1s, left 1.5s
+    transition: opacity 1s, background-color .3s, box-shadow .3s;
   }
 
   .movieGrid {
@@ -197,3 +207,8 @@
     position: relative;
     z-index: 1;
   }
+
+  @import 'partials/1280';
+  @import 'partials/1024';
+  @import 'partials/768';
+  @import 'partials/420';

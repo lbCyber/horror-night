@@ -3,7 +3,7 @@ main {
 
 .moviePage {
   margin: 0 60px;
-  padding-top: 60px;
+  padding-bottom: 40px;
   background-color: rgba(10, 10, 10, 0.85); }
 
 .moviePageInfo {
@@ -18,10 +18,6 @@ main {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between; }
-  .moviePageInfo iframe {
-    min-width: 100%;
-    height: 100%;
-    display: block; }
 
 .movieInfoContainer {
   display: -webkit-box;
@@ -29,19 +25,43 @@ main {
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between; }
+  justify-content: space-between;
+  position: relative;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  max-height: 500px; }
 
 .moviePagePoster {
   -webkit-box-shadow: 0px 10px 35px 5px rgba(0, 0, 0, 0.8);
   box-shadow: 0px 10px 35px 5px rgba(0, 0, 0, 0.8);
   border: 2px solid rgba(255, 255, 255, 0.008);
-  border-radius: 5px; }
+  border-radius: 5px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  max-width: 35%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -webkit-box-ordinal-group: 1;
+  -ms-flex-order: 0;
+  order: 0; }
 
-.titleAndPoster {
-  width: 35%; }
+.trailer {
+  -ms-flex-preferred-size: 60%;
+  flex-basis: 60%;
+  width: calc(65% - 20px);
+  margin-left: 20px;
+  display: block;
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1; }
 
 .movieDeets {
-  width: 60%;
+  margin-left: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,22 +71,31 @@ main {
   flex-direction: column;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
-  justify-content: flex-end; }
-  .movieDeets p:not(last-child) {
-    margin-top: 6px; }
-  .movieDeets p:last-child {
-    margin-top: 20px; }
+  justify-content: flex-end;
+  width: calc(65% - 20px);
+  -ms-flex-preferred-size: 40%;
+  flex-basis: 40%;
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2; }
 
 .deetHeader {
   font-weight: 800;
   font-size: 1.1rem;
   margin-right: .5rem; }
 
+.movieDeetscontent {
+  max-height: 50%; }
+
 .movieOverview {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  line-height: 1.3rem; }
+  line-height: 1.3rem;
+  margin-top: 20px; }
+
+.deetTopInfo p {
+  margin-top: 6px; }
 
 .overviewText {
   font-style: italic; }
@@ -93,16 +122,11 @@ main {
   -ms-flex-direction: column;
   flex-direction: column; }
 
-.goBackTop {
+.goBack {
   margin: 20px 0 20px 30px;
   font-size: 1.2rem;
-  font-style: italic; }
-
-.goBackBottom {
-  padding: 0 30px 40px 0;
-  font-size: 1.2rem;
   font-style: italic;
-  text-align: right; }
+  display: inline-block; }
 
 .comingSoon {
   text-align: center;
@@ -186,5 +210,5 @@ main {
       border-width: 1px;
       border-style: solid;
       border-color: rgba(255, 255, 255, 0.3);
-      color: #99F;
+      color: #FB5;
       text-shadow: 0 0 3px #000; }

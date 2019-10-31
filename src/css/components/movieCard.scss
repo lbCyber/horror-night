@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
-  background: rgba(66, 66, 66, .66);
+  background-color: rgba(66, 66, 66, .66);
   border-radius: 2px;
   height: 100%;
   opacity: 0;
@@ -25,7 +25,7 @@
   }
   &:hover {
     box-shadow: 0 0 0 1px #fff;
-    background: rgba(99, 99, 99, .99);
+    background-color: rgba(99, 99, 99, .99);
     opacity: 1 !important;
   }
 }
@@ -63,7 +63,7 @@
   transition: opacity .5s, color .5s;
   cursor: pointer;
   &:hover {
-    color: #99F;
+    color: #FB5;
   }
 }
 
@@ -83,7 +83,7 @@
   background-color: rgba(0, 0, 0, .8);
   border-radius: 15px;
   padding: 20px;
-  text-align:center;
+  text-align: center;
 }
 
 .pkRatings {
@@ -94,4 +94,9 @@
 
 .ratingNumber {
   width: auto !important;
+}
+
+.legend {
+  font-size: 2rem;
+  color: #FB5;
 }

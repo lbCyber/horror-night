@@ -1,5 +1,4 @@
-@import "partials/colorcodes";
-
+@import "../partials/colorcodes";
 footer {
   align-items: center;
   bottom: 0;
@@ -13,7 +12,7 @@ footer {
   text-transform: uppercase;
   width: 100%;
   z-index: 999;
-  background-color: rgba(66,66,66,.8);
+  background-color: rgba(66, 66, 66, .8);
   height: 24px;
   position: relative;
   transition: padding 0.5s, height 0.5s, background-color 0.5s, color 0.5s;

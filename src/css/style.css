@@ -238,7 +238,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Racing Sans One', cursive; }
+  font-family: 'Racing Sans One', serif; }
 
 h1 {
   text-align: center;
@@ -249,6 +249,9 @@ h2 {
   font-size: 2.5rem;
   margin: 15px 0 10px;
   text-transform: uppercase; }
+
+h3 {
+  font-weight: 400; }
 
 h4 {
   text-transform: uppercase; }
@@ -269,12 +272,11 @@ img {
 
 main {
   position: relative;
-  padding-bottom: 50px;
-  min-height: calc(100vh - 60px); }
+  padding-bottom: 50px; }
 
 a {
   text-decoration: none;
-  color: #99F;
+  color: #FB5;
   font-style: inherit;
   -webkit-transition: color .5s, text-shadow .5s;
   -o-transition: color .5s, text-shadow .5s;
@@ -287,15 +289,17 @@ p {
   margin-top: 20px; }
 
 header {
-  margin: 20px auto; }
+  margin: 0 auto 20px; }
   header .headerBlurb {
     width: 60%;
-    margin: 0 auto;
+    margin: 20px auto 0;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 15px; }
+    border-radius: 15px;
+    line-height: 1.35rem; }
   header h1 {
-    margin: 20px auto; }
+    padding: 20px 0;
+    background-color: rgba(10, 10, 10, 0.85); }
   header h4 {
     font-weight: 600;
     text-transform: unset;
@@ -315,8 +319,14 @@ header {
   -o-transition: color .5s, text-shadow .5s;
   transition: color .5s, text-shadow .5s; }
   .clickable:hover {
-    color: #99F;
+    color: #FB5;
     text-shadow: 0 0 5px #000; }
+
+.noHoverToolTip {
+  visibility: hidden;
+  position: absolute;
+  height: 0;
+  width: 0; }
 
 .backDrop {
   width: 100%;
@@ -377,16 +387,16 @@ header {
   transition: opacity .5s; }
 
 .cardLoadFade-enter {
-  opacity: 0;
-  left: 75px; }
+  opacity: 0; }
 
 .cardLoadFade-enter-active,
 .cardLoadFade-enter-done {
   opacity: 1;
-  left: 0;
-  -webkit-transition: opacity 1s, left 1.5s;
-  -o-transition: opacity 1s, left 1.5s;
-  transition: opacity 1s, left 1.5s; }
+  -webkit-transition: opacity 1s, background-color .3s, -webkit-box-shadow .3s;
+  transition: opacity 1s, background-color .3s, -webkit-box-shadow .3s;
+  -o-transition: opacity 1s, background-color .3s, box-shadow .3s;
+  transition: opacity 1s, background-color .3s, box-shadow .3s;
+  transition: opacity 1s, background-color .3s, box-shadow .3s, -webkit-box-shadow .3s; }
 
 .movieGrid {
   display: -webkit-box;
@@ -400,3 +410,189 @@ header {
   justify-content: center;
   position: relative;
   z-index: 1; }
+
+@media all and (max-width: 1280px) {
+  header h1 {
+    font-size: 3rem; }
+  .movieReviewChart ul {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+  .reviewToolTip {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; } }
+
+@media all and (max-width: 1024px) {
+  header h1 {
+    padding: 20px 30px; }
+  .hoverToolTip {
+    display: none; }
+  .card {
+    min-width: 300px; }
+    .card:hover {
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      background-color: rgba(66, 66, 66, 0.66); }
+  .backDrop {
+    background-position: center; }
+  .imageContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+    .imageContainer img {
+      height: unset; }
+  .card figCaption {
+    opacity: 1;
+    background: none;
+    position: relative;
+    height: unset; }
+  .clickReviewBox {
+    width: 60%;
+    padding: 10px;
+    margin: 10px 0 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    -webkit-transition: background-color .3s, border .3s;
+    -o-transition: background-color .3s, border .3s;
+    transition: background-color .3s, border .3s; }
+    .clickReviewBox:hover {
+      background-color: rgba(0, 0, 0, 0.75);
+      border: 1px solid #FB5; }
+  .moviePage,
+  .moviePageInfo,
+  .pkReviews,
+  .movieChat {
+    margin: 0 30px; }
+  .movieInfoContainer {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    max-height: unset; }
+  .trailer {
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+    margin-top: 80px;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    position: relative;
+    min-height: 300px; }
+  .movieDeets {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+    width: 100%;
+    -ms-flex-preferred-size: calc(65% - 20px);
+    flex-basis: calc(65% - 20px);
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+  .pkReviews {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+  .movieReviewChart ul {
+    padding: 0; }
+  .reviewToolTip {
+    max-width: 100%; }
+  .noHoverToolTip {
+    visibility: visible;
+    position: relative;
+    height: unset;
+    width: 100%; }
+    .noHoverToolTip h2 {
+      margin-bottom: 20px;
+      color: #B43; }
+    .noHoverToolTip h4 {
+      margin: 0;
+      color: #FB5;
+      font-weight: 400;
+      text-transform: unset; }
+    .noHoverToolTip p {
+      margin: 10px 20px 20px; }
+  .noHoverCriteria {
+    margin: 20px 0 0 20px; } }
+
+@media all and (max-width: 768px) {
+  html {
+    min-width: 320px;
+    font-size: 80%; }
+  header h1 {
+    font-size: 2rem; }
+  header .headerBlurb {
+    width: 100%;
+    margin: 0;
+    border-radius: 0; }
+  .clickReviewBox h4 {
+    font-size: 1rem; }
+  .card h5 {
+    font-size: 1rem; }
+  .clickable:not(h1) {
+    color: #FB5; }
+  .card {
+    margin: 30px 0;
+    width: 380px; }
+  footer {
+    height: 60px;
+    text-align: center; }
+  .moviePage {
+    margin: 0; }
+  .overviewHeader {
+    margin-bottom: 8px; }
+  .moviePageInfo {
+    margin: 0 10px; }
+  .moviePagePoster {
+    max-width: 100%; }
+  .movieDeets {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    margin-left: 0; }
+  .movieOverview {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+  .pkReviews {
+    padding-top: 0; }
+  .trailer {
+    margin-left: 0; }
+  .reviewChart {
+    margin-bottom: 15px; }
+  .movieReviewChart li {
+    width: 60px; }
+    .movieReviewChart li h6 {
+      font-size: .75rem; }
+    .movieReviewChart li:hover {
+      background-color: transparent;
+      border: none; }
+  .legend {
+    text-align: center; }
+  .noHoverCriteria {
+    margin: 20px 0 0; }
+  .noHoverToolTip p {
+    margin: 10px 0 20px; } }
+
+@media all and (max-width: 420px) {
+  body {
+    min-width: 320px; }
+  .wrapper {
+    min-width: 320px; }
+  .card {
+    width: 100%;
+    min-width: 310px; } }

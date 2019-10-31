@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group'
-import './../css/components/movieCard.css'
 
 class MovieCard extends Component {
   constructor(props) {
@@ -71,13 +70,13 @@ class MovieCard extends Component {
               <h4>{(this.props.moviePick.title === "زیر سایه")?"Under the Shadow":`${this.props.moviePick.title}`}</h4>
               <h5>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h5>
             </div>
-            <div className="imageContainer" onMouseDown={() => {
-              // this.props.loading(true)
-              this.props.callback(this.props.moviePick.id)
-              window.scrollTo(0, 0)
-            }}>
+            <div className="imageContainer">
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
-              <figcaption>
+              <figcaption onMouseDown={() => {
+                // this.props.loading(true)
+                this.props.callback(this.props.moviePick.id)
+                window.scrollTo(0, 0)
+              }}>
                 <div className="clickReviewBox" >
                   {(this.state.Paul + this.state.Kyle > 5) ?
                   <h4 className="green">{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>

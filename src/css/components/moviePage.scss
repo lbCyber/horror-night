@@ -4,7 +4,7 @@ main {
 
 .moviePage {
   margin: 0 60px;
-  padding-top: 60px;
+  padding-bottom: 40px;
   background-color: rgba(10, 10, 10, .85);
 }
 
@@ -13,39 +13,44 @@ main {
   margin: 0 60px;
   flex-direction: column;
   justify-content: space-between;
-  iframe {
-    min-width: 100%;
-    height: 100%;
-    display: block;
-  }
 }
 
 .movieInfoContainer {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+  flex-direction:column;
+  height:100%;
+  max-height:500px;
 }
 
 .moviePagePoster {
   box-shadow: 0px 10px 35px 5px rgba(0, 0, 0, 0.8);
   border: 2px solid rgba(255, 255, 255, 0.008);
   border-radius: 5px;
+  object-fit: cover;
+  max-width: 35%;
+  flex-basis:100%;
+  order: 0;
 }
 
-.titleAndPoster {
-  width: 35%;
+.trailer {
+  flex-basis:60%;
+  width: calc(65% - 20px);
+  margin-left: 20px;
+  display: block;
+  order:1;
 }
 
 .movieDeets {
-  width: 60%;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  p:not(last-child) {
-    margin-top: 6px;
-  }
-  p:last-child {
-    margin-top: 20px;
-  }
+  width:calc(65% - 20px);
+  flex-basis:40%;
+  order:2;
 }
 
 .deetHeader {
@@ -54,9 +59,18 @@ main {
   margin-right: .5rem;
 }
 
+.movieDeetscontent {
+  max-height: 50%;
+}
+
 .movieOverview {
   display: flex;
   line-height: 1.3rem;
+  margin-top:20px;
+}
+
+.deetTopInfo p {
+  margin-top:6px;
 }
 
 .overviewText {
@@ -81,17 +95,11 @@ main {
   flex-direction: column;
 }
 
-.goBackTop {
+.goBack {
   margin: 20px 0 20px 30px;
   font-size: 1.2rem;
   font-style: italic;
-}
-
-.goBackBottom {
-  padding: 0 30px 40px 0;
-  font-size: 1.2rem;
-  font-style: italic;
-  text-align:right;
+  display: inline-block;
 }
 
 .comingSoon {
@@ -159,7 +167,7 @@ main {
       border-width: 1px;
       border-style: solid;
       border-color: rgba(255, 255, 255, .3);
-      color: #99F;
+      color: #FB5;
       text-shadow: 0 0 3px #000;
     }
   }
