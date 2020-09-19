@@ -58,7 +58,10 @@ main {
   display: block;
   -webkit-box-ordinal-group: 2;
   -ms-flex-order: 1;
-  order: 1; }
+  order: 1;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1; }
 
 .movieDeets {
   margin-left: 20px;

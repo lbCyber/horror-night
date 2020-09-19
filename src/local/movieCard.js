@@ -13,21 +13,12 @@ class MovieCard extends Component {
   }
 
   componentDidMount() {
+    const reviewsum = (arr) => {
+      return Object.values(arr).reduce((a,b) => a + b, 0)
+    }
     this.setState({
-      Paul: (
-        this.props.reviewData.reviews["Paul"]["Enjoyable"] +
-        this.props.reviewData.reviews["Paul"]["Memorable"] +
-        this.props.reviewData.reviews["Paul"]["Recommendable"] +
-        this.props.reviewData.reviews["Paul"]["Rewatchable"] +
-        this.props.reviewData.reviews["Paul"]["Successful"]
-      ),
-      Kyle: (
-        this.props.reviewData.reviews["Kyle"]["Enjoyable"] +
-        this.props.reviewData.reviews["Kyle"]["Memorable"] +
-        this.props.reviewData.reviews["Kyle"]["Recommendable"] +
-        this.props.reviewData.reviews["Kyle"]["Rewatchable"] +
-        this.props.reviewData.reviews["Kyle"]["Successful"]
-      )
+      Paul: reviewsum(this.props.reviewData.reviews["Paul"]),
+      Kyle: reviewsum(this.props.reviewData.reviews["Kyle"])
     })
     const img = new Image();
     img.src = `https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`
