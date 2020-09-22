@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import nl2br from 'react-newline-to-break';
+import { Link } from "react-router-dom";
 
 class Movie extends Component {
   constructor(props) {
@@ -79,20 +80,20 @@ class Movie extends Component {
       setTimeout(() => {
         this.props.backDrop(`https://image.tmdb.org/t/p/w1280${this.props.moviePick.backdrop_path}`)
       }, 1100)
+      window.scrollTo(0, 0)
       // this.props.loading(false)
     })
   }
 
   render() {
     return (
-      <React.Fragment>
         <article className="moviePage">
           <div>
-            <p className="goBack clickable" onMouseDown={() => {
+            <Link to="/" className="goBack clickable" onMouseDown={() => {
               this.props.callback(null)
               this.props.backDrop(null)
-              window.scrollTo(0, 0)
-            }}>&gt; Return to the main menu</p>
+              // window.scrollTo(0, 0)
+            }}>&gt; Return to the main menu</Link>
           </div>
           <section className="moviePageInfo">
             <h2>{(this.props.moviePick.title === "زیر سایه") ? "Under the Shadow" : `${this.props.moviePick.title}`} ({this.props.moviePick.release_date.slice(0, 4)})</h2>
@@ -104,7 +105,7 @@ class Movie extends Component {
                   <p><span className="deetHeader">Language: </span> {this.state.language}</p>
                   <p><span className="deetHeader"><a href={`https://www.themoviedb.org/movie/${this.props.moviePick.id}`} target="_blank" rel="noopener noreferrer">TMDB Rating:</a> </span> {this.props.moviePick.vote_average} ({this.props.moviePick.vote_count} votes)</p>
                 </div>
-                <p className="movieOverview"><div className="deetHeader overviewHeader">Overview: </div> <div className="overviewText">{this.props.moviePick.overview}</div></p>
+                <div className="movieOverview"><p className="deetHeader overviewHeader">Overview: </p> <p className="overviewText">{this.props.moviePick.overview}</p></div>
               </div>
             </div>
           </section>
@@ -144,9 +145,9 @@ class Movie extends Component {
                 : null}
               <div className="reviewToolTipContent noHoverToolTip">
                 <h2 className="legend">Legend</h2>
-                {this.reviewBlurb.map((movieCriteria) => {
+                {this.reviewBlurb.map((movieCriteria,key) => {
                   return (
-                    <div className="noHoverCriteria">
+                    <div className="noHoverCriteria" key={key}>
                       <h4>{movieCriteria["criteria"]}</h4>
                       <p>{nl2br(movieCriteria["blurb"])}</p>
                     </div>
@@ -163,14 +164,13 @@ class Movie extends Component {
             }
           </section>
           <div>
-            <p className="goBack clickable" onMouseDown={() => {
+            <Link to="/" className="goBack clickable" onMouseDown={() => {
               this.props.callback(null)
               this.props.backDrop(null)
-              window.scrollTo(0, 0)
-            }}>&gt; Return to the main menu</p>
+              // window.scrollTo(0, 0)
+            }}>&gt; Return to the main menu</Link>
           </div>
-        </article >
-      </React.Fragment >
+        </article>
     )
   }
 }

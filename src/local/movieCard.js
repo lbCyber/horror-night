@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { CSSTransition } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group';
+import { Link } from "react-router-dom";
 
 class MovieCard extends Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     this.state = {
@@ -13,20 +15,27 @@ class MovieCard extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     const reviewsum = (arr) => {
-      return Object.values(arr).reduce((a,b) => a + b, 0)
+      return Object.values(arr).reduce((a, b) => a + b, 0)
     }
-    this.setState({
-      Paul: reviewsum(this.props.reviewData.reviews["Paul"]),
-      Kyle: reviewsum(this.props.reviewData.reviews["Kyle"])
-    })
+    if (this._isMounted) {
+      this.setState({
+        Paul: reviewsum(this.props.reviewData.reviews["Paul"]),
+        Kyle: reviewsum(this.props.reviewData.reviews["Kyle"])
+      })
+      setTimeout(() => {
+        this.setState({ loaded: true })
+      },
+        this.props.cardNumber * 75
+      )
+    }
     const img = new Image();
     img.src = `https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`
-    setTimeout(() => {
-      this.setState({ loaded: true })
-    },
-      this.props.cardNumber * 75
-    )
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   setBackDrop = (img) => {
@@ -58,28 +67,30 @@ class MovieCard extends Component {
             this.setHover(false)
           }}>
             <div className="cardTitle">
-              <h4>{(this.props.moviePick.title === "زیر سایه")?"Under the Shadow":`${this.props.moviePick.title}`}</h4>
+              <h4>{(this.props.moviePick.title === "زیر سایه") ? "Under the Shadow" : `${this.props.moviePick.title}`}</h4>
               <h5>{`(${this.props.moviePick.release_date.slice(0, 4)})`}</h5>
             </div>
             <div className="imageContainer">
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
-              <figcaption onMouseDown={() => {
-                // this.props.loading(true)
-                this.props.callback(this.props.moviePick.id)
-                window.scrollTo(0, 0)
-              }}>
-                <div className="clickReviewBox" >
-                  {(this.state.Paul + this.state.Kyle > 5) ?
-                  <h4 className="green">{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>
-                    : <h4 className="red">{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>
-                  }
-                  <h5>Click for review</h5>
-                </div>
-              </figcaption>
+              <Link to={`/${this.props.moviePick.id}`}>
+                <figcaption onMouseDown={() => {
+                  // this.props.loading(true)
+                  this.props.callback(this.props.moviePick.id)
+                  // window.scrollTo(0, 0)
+                }}>
+                  <div className="clickReviewBox" >
+                    {(this.state.Paul + this.state.Kyle > 5) ?
+                      <h4 className="green">{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>
+                      : <h4 className="red">{`Rating: ${this.state.Paul + this.state.Kyle}/10`}</h4>
+                    }
+                    <h5>Click for review</h5>
+                  </div>
+                </figcaption>
+              </Link>
             </div>
             <div className="pkRatings">
               {(this.state.Paul > 2) ?
-              <h5 className="ratingNumber green">{`Paul: ${this.state.Paul}/5`}</h5>
+                <h5 className="ratingNumber green">{`Paul: ${this.state.Paul}/5`}</h5>
                 : <h5 className="ratingNumber red">{`Paul: ${this.state.Paul}/5`}</h5>}
               {(this.state.Kyle > 2) ?
                 <h5 className="ratingNumber green">{`Kyle: ${this.state.Kyle}/5`}</h5>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoadingModal from './local/loadingModal'
 import Swal from 'sweetalert2'
 import axios from 'axios'
@@ -111,7 +112,7 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Router>
         <CSSTransition
           in={this.state.back !== null && this.state.backFadeOut === false}
           timeout={1000}
@@ -130,23 +131,39 @@ class App extends Component {
           </CSSTransition>
           : <main>
             <div className="wrapper">
-              {(this.state.moviePick === null) ?
-                <div className="movieGrid">
-                  {
-                    this.state.apiData.map((movie, key) => {
-                      return (
-                        <MovieCard moviePick={movie} key={key} language={this.pickLanguage(movie.original_language)} cardNumber={key} ready={this.state.backFadeOut === false && this.state.back === null} reviewData={this.state.review[movie.id]} callback={this.moviePickCB} backDrop={this.bgCallBack} loading={this.loadCB} />
-                      )
-                    })
-                  }
-                </div>
-                : <Movie loading={this.loadCB} moviePick={this.state.apiData.find((i) => { return i.id === this.state.moviePick })} movieReviews={this.state.review[this.state.moviePick]} callback={this.moviePickCB} backDrop={this.simpleBackCB} languages={this.state.languages} />
-              }
+              <Switch>
+                {
+                  this.state.apiData.map((movie, key) => {
+                    return (
+                      <Route path={`/${movie.id}`} key={key}>
+                        <Movie loading={this.loadCB} moviePick={movie} movieReviews={this.state.review[movie.id]} callback={this.moviePickCB} backDrop={this.simpleBackCB} languages={this.state.languages} />
+                      </Route>
+                    )
+                  })
+                }
+                <Route path="/">
+                  <div className="headerBlurb">
+                    <h4>For every month for over five years, two best friends have gotten together to find a new horror-themed movie to review, with an eye for overlooked gems or overrated trash.</h4>
+                    <h4>Explore the site to discover movies that might interest you! Everything is rated based on five criteria: Enjoyability, Success, Memorability, Recommendability, and Rewatchability. We'll also provide our post-movie discussion on what we thought of the film.</h4>
+                    <h4>This is a work in progress (especially the style), so expect major changes and additions soon!</h4>
+                    <h4>And of course, Happy Halloween!</h4>
+                  </div>
+                  <div className="movieGrid">
+                    {
+                      this.state.apiData.map((movie, key) => {
+                        return (
+                          <MovieCard moviePick={movie} key={key} language={this.pickLanguage(movie.original_language)} cardNumber={key} ready={this.state.backFadeOut === false && this.state.back === null} reviewData={this.state.review[movie.id]} callback={this.moviePickCB} backDrop={this.bgCallBack} loading={this.loadCB} />
+                        )
+                      })
+                    }
+                  </div>
+                </Route>
+              </Switch>
             </div>
           </main>
         }
         <Footer />
-      </React.Fragment>
+      </Router>
     )
   }
 }

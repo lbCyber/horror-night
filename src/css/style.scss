@@ -78,18 +78,19 @@
 
   header {
     margin: 0 auto 20px;
-    .headerBlurb {
-      width: 60%;
-      margin: 20px auto 0;
-      padding: 30px;
-      background-color: rgba(255, 255, 255, .15);
-      border-radius: 15px;
-      line-height: 1.35rem;
-    }
     h1 {
       padding: 20px 0;
       background-color: rgba(10, 10, 10, .85);
     }
+  }
+
+  .headerBlurb {
+    width: 60%;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, .15);
+    border-radius: 15px;
+    line-height: 1.35rem;
     h4 {
       font-weight: 600;
       text-transform: unset;
