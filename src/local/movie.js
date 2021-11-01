@@ -87,90 +87,88 @@ class Movie extends Component {
 
   render() {
     return (
-        <article className="moviePage">
-          <div>
-            <Link to="/" className="goBack clickable" onMouseDown={() => {
-              this.props.callback(null)
-              this.props.backDrop(null)
-              // window.scrollTo(0, 0)
-            }}>&gt; Return to the main menu</Link>
+      <article className="moviePage">
+        <div>
+          <Link to="/" className="goBack clickable" onMouseDown={() => {
+            this.props.callback(null)
+            this.props.backDrop(null)
+            // window.scrollTo(0, 0)
+          }}>&gt; Return to the main menu</Link>
+        </div>
+        <section className="moviePageInfo">
+          <h2>{(this.props.moviePick.title === "زیر سایه") ? "Under the Shadow" : `${this.props.moviePick.title}`} ({this.props.moviePick.release_date.slice(0, 4)})</h2>
+          <div className="movieInfoContainer">
+            <img className="moviePagePoster" src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
+            <iframe className="trailer" title={`Trailer for ${this.props.moviePick.title}`} src={`https://www.youtube-nocookie.com/embed/${this.state.video}`} frameBorder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} modestbranding="true"></iframe>
+            <div className="deetTopInfo movieDeets">
+              <p><span className="deetHeader">Language: </span> {this.state.language}</p>
+              <p><span className="deetHeader"><a href={`https://www.themoviedb.org/movie/${this.props.moviePick.id}`} target="_blank" rel="noopener noreferrer">TMDB Rating:</a> </span> {this.props.moviePick.vote_average} ({this.props.moviePick.vote_count} votes)</p>
+            </div>
+            <div className="movieOverview movieDeets"><p className="deetHeader overviewHeader">Overview: </p> <p className="overviewText">{this.props.moviePick.overview}</p></div>
           </div>
-          <section className="moviePageInfo">
-            <h2>{(this.props.moviePick.title === "زیر سایه") ? "Under the Shadow" : `${this.props.moviePick.title}`} ({this.props.moviePick.release_date.slice(0, 4)})</h2>
-            <div className="movieInfoContainer">
-              <img className="moviePagePoster" src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${this.props.moviePick.poster_path}`} alt={`Movie poster for ${this.props.moviePick.title}`} />
-              <iframe className="trailer" title={`Trailer for ${this.props.moviePick.title}`} src={`https://www.youtube-nocookie.com/embed/${this.state.video}`} frameBorder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} modestbranding="true"></iframe>
-              <div className="movieDeets">
-                <div className="deetTopInfo">
-                  <p><span className="deetHeader">Language: </span> {this.state.language}</p>
-                  <p><span className="deetHeader"><a href={`https://www.themoviedb.org/movie/${this.props.moviePick.id}`} target="_blank" rel="noopener noreferrer">TMDB Rating:</a> </span> {this.props.moviePick.vote_average} ({this.props.moviePick.vote_count} votes)</p>
-                </div>
-                <div className="movieOverview"><p className="deetHeader overviewHeader">Overview: </p> <p className="overviewText">{this.props.moviePick.overview}</p></div>
-              </div>
+        </section>
+        <section className="pkReviews">
+          <div className="reviewChart">
+            <div className="movieReviewChart">
+              <h4>Paul:</h4>
+              <ul>
+                <li onMouseOver={() => { this.blurbHover(0, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Enjoyable) ? <img src="./assets/yes.png" alt={`Paul found the movie enjoyable`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie enjoyable`} />}<h6>Enjoyable</h6></li>
+                <li onMouseOver={() => { this.blurbHover(1, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Successful) ? <img src="./assets/yes.png" alt={`Paul found the movie successful`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie successful`} />}<h6>Successful</h6></li>
+                <li onMouseOver={() => { this.blurbHover(2, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Memorable) ? <img src="./assets/yes.png" alt={`Paul found the movie memorable`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie memorable`} />}<h6>Memorable</h6></li>
+                <li onMouseOver={() => { this.blurbHover(3, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Recommendable) ? <img src="./assets/yes.png" alt={`Paul found the movie recommendable`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie recommendable`} />}<h6>Recommended</h6></li>
+                <li onMouseOver={() => { this.blurbHover(4, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Rewatchable) ? <img src="./assets/yes.png" alt={`Paul found the movie rewatchable`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie rewatchable`} />}<h6>Rewatchable</h6></li>
+              </ul>
             </div>
-          </section>
-          <section className="pkReviews">
-            <div className="reviewChart">
-              <div className="movieReviewChart">
-                <h4>Paul:</h4>
-                <ul>
-                  <li onMouseOver={() => { this.blurbHover(0, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Enjoyable) ? <img src="./assets/yes.png" alt={`Paul found the movie enjoyable`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie enjoyable`} />}<h6>Enjoyable</h6></li>
-                  <li onMouseOver={() => { this.blurbHover(1, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Successful) ? <img src="./assets/yes.png" alt={`Paul found the movie successful`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie successful`} />}<h6>Successful</h6></li>
-                  <li onMouseOver={() => { this.blurbHover(2, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Memorable) ? <img src="./assets/yes.png" alt={`Paul found the movie memorable`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie memorable`} />}<h6>Memorable</h6></li>
-                  <li onMouseOver={() => { this.blurbHover(3, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Recommendable) ? <img src="./assets/yes.png" alt={`Paul found the movie recommendable`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie recommendable`} />}<h6>Recommended</h6></li>
-                  <li onMouseOver={() => { this.blurbHover(4, "Paul") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Paul.Rewatchable) ? <img src="./assets/yes.png" alt={`Paul found the movie rewatchable`} /> : <img src="./assets/no.png" alt={`Paul didn't find the movie rewatchable`} />}<h6>Rewatchable</h6></li>
-                </ul>
-              </div>
-              <div className="movieReviewChart">
-                <h4>Kyle:</h4>
-                <ul>
-                  <li onMouseOver={() => { this.blurbHover(0, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Enjoyable) ? <img src="./assets/yes.png" alt={`Kyle found the movie enjoyable`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie enjoyable`} />}<h6>Enjoyable</h6></li>
-                  <li onMouseOver={() => { this.blurbHover(1, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Successful) ? <img src="./assets/yes.png" alt={`Kyle found the movie successful`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie successful`} />}<h6>Successful</h6></li>
-                  <li onMouseOver={() => { this.blurbHover(2, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Memorable) ? <img src="./assets/yes.png" alt={`Kyle found the movie memorable`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie memorable`} />}<h6>Memorable</h6></li>
-                  <li onMouseOver={() => { this.blurbHover(3, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Recommendable) ? <img src="./assets/yes.png" alt={`Kyle found the movie recommendable`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie recommendable`} />}<h6>Recommended</h6></li>
-                  <li onMouseOver={() => { this.blurbHover(4, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Rewatchable) ? <img src="./assets/yes.png" alt={`Kyle found the movie rewatchable`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie rewatchable`} />}<h6>Rewatchable</h6></li>
-                </ul>
-              </div>
+            <div className="movieReviewChart">
+              <h4>Kyle:</h4>
+              <ul>
+                <li onMouseOver={() => { this.blurbHover(0, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Enjoyable) ? <img src="./assets/yes.png" alt={`Kyle found the movie enjoyable`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie enjoyable`} />}<h6>Enjoyable</h6></li>
+                <li onMouseOver={() => { this.blurbHover(1, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Successful) ? <img src="./assets/yes.png" alt={`Kyle found the movie successful`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie successful`} />}<h6>Successful</h6></li>
+                <li onMouseOver={() => { this.blurbHover(2, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Memorable) ? <img src="./assets/yes.png" alt={`Kyle found the movie memorable`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie memorable`} />}<h6>Memorable</h6></li>
+                <li onMouseOver={() => { this.blurbHover(3, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Recommendable) ? <img src="./assets/yes.png" alt={`Kyle found the movie recommendable`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie recommendable`} />}<h6>Recommended</h6></li>
+                <li onMouseOver={() => { this.blurbHover(4, "Kyle") }} onMouseLeave={() => { this.blurbHover(null) }}>{(this.props.movieReviews.reviews.Kyle.Rewatchable) ? <img src="./assets/yes.png" alt={`Kyle found the movie rewatchable`} /> : <img src="./assets/no.png" alt={`Kyle didn't find the movie rewatchable`} />}<h6>Rewatchable</h6></li>
+              </ul>
             </div>
-            <div className="reviewToolTip">
-              {(this.state.hover !== null && this.state.hover !== undefined) ?
-                <div className="reviewToolTipContent hoverToolTip" aria-hidden>
-                  <h5>{this.state.hover["criteria"]}</h5>
-                  <p>{nl2br(this.state.hover["blurb"])}</p>
-                  {(this.props.movieReviews.reviews[this.state.hoverReviewer][this.state.hover["keyName"]]) ?
-                    <p className="green">{this.state.hoverReviewer} found {this.props.moviePick.title} {this.state.hover["criteriaShort"]}</p>
-                    : <p className="red">{this.state.hoverReviewer} did not find {this.props.moviePick.title} {this.state.hover["criteriaShort"]}</p>
-                  }
-                </div>
-                : null}
-              <div className="reviewToolTipContent noHoverToolTip">
-                <h2 className="legend">Legend</h2>
-                {this.reviewBlurb.map((movieCriteria,key) => {
-                  return (
-                    <div className="noHoverCriteria" key={key}>
-                      <h4>{movieCriteria["criteria"]}</h4>
-                      <p>{nl2br(movieCriteria["blurb"])}</p>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          </section>
-          <section className="movieChat">
-            <h2>Discussion</h2>
-            {(this.props.movieReviews.reviews.Chat.length > 0) ?
-              <p className="chat">this.props.movieReviews.reviews.Chat</p>
-              : <p className="comingSoon">Coming soon, promise!</p>
-            }
-          </section>
-          <div>
-            <Link to="/" className="goBack clickable" onMouseDown={() => {
-              this.props.callback(null)
-              this.props.backDrop(null)
-              // window.scrollTo(0, 0)
-            }}>&gt; Return to the main menu</Link>
           </div>
-        </article>
+          <div className="reviewToolTip">
+            {(this.state.hover !== null && this.state.hover !== undefined) ?
+              <div className="reviewToolTipContent hoverToolTip" aria-hidden>
+                <h5>{this.state.hover["criteria"]}</h5>
+                <p>{nl2br(this.state.hover["blurb"])}</p>
+                {(this.props.movieReviews.reviews[this.state.hoverReviewer][this.state.hover["keyName"]]) ?
+                  <p className="green">{this.state.hoverReviewer} found {this.props.moviePick.title} {this.state.hover["criteriaShort"]}</p>
+                  : <p className="red">{this.state.hoverReviewer} did not find {this.props.moviePick.title} {this.state.hover["criteriaShort"]}</p>
+                }
+              </div>
+              : null}
+            <div className="reviewToolTipContent noHoverToolTip">
+              <h2 className="legend">Legend</h2>
+              {this.reviewBlurb.map((movieCriteria, key) => {
+                return (
+                  <div className="noHoverCriteria" key={key}>
+                    <h4>{movieCriteria["criteria"]}</h4>
+                    <p>{nl2br(movieCriteria["blurb"])}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+        <section className="movieChat">
+          <h2>Discussion</h2>
+          {(this.props.movieReviews.reviews.Chat.length > 0) ?
+            <p className="chat">this.props.movieReviews.reviews.Chat</p>
+            : <p className="comingSoon">Coming soon, promise!</p>
+          }
+        </section>
+        <div>
+          <Link to="/" className="goBack clickable" onMouseDown={() => {
+            this.props.callback(null)
+            this.props.backDrop(null)
+            // window.scrollTo(0, 0)
+          }}>&gt; Return to the main menu</Link>
+        </div>
+      </article>
     )
   }
 }
